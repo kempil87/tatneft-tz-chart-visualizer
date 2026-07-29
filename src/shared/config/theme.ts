@@ -81,7 +81,7 @@ export const darkTheme: AppTheme = {
     surface: '#242424',
     foreground: '#fff',
     separator: '#2c2c2c',
-    tertiary: '#343a40',
+    tertiary: '#333333',
   },
   ...restTheme,
 };

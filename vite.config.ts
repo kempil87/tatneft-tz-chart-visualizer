@@ -5,7 +5,7 @@ import path from 'path';
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/tatneft-tz-chart-visualizer/',
+  base: process.env.NODE_ENV === 'production' ? '/tatneft-tz-chart-visualizer/' : '/',
   plugins: [react(), babel({ presets: [reactCompilerPreset()] })],
   resolve: {
     alias: {
