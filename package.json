@@ -10,7 +10,14 @@
     "preview": "vite preview",
     "format": "prettier --write .",
     "lint:fix": "eslint . --fix",
-    "deploy": "gh-pages -d dist"
+    "deploy": "yarn build && gh-pages -d dist",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@hookform/resolvers": "^5.5.7",
@@ -45,6 +52,8 @@
     "eslint-plugin-unused-imports": "^4.4.1",
     "gh-pages": "^6.3.0",
     "globals": "^17.7.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.2.0",
     "prettier": "^3.5.3",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.62.0",
