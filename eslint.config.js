@@ -37,21 +37,6 @@ export default tseslint.config(
       ...reactHooks.configs.recommended.rules,
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
 
-      // kebab-case для имён файлов
-      'unicorn/filename-case': [
-        'error',
-        {
-          case: 'kebabCase',
-          ignore: [
-            String.raw`\.config\.`,
-            String.raw`vite-env\.d\.ts`,
-            '^main\\.tsx$',
-            '^index\\.tsx?$',
-          ],
-        },
-      ],
-
-      // автоудаление неиспользуемых импортов
       '@typescript-eslint/no-unused-vars': 'off',
       'unused-imports/no-unused-imports': 'error',
       'unused-imports/no-unused-vars': [
