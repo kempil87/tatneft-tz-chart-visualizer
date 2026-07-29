@@ -20,5 +20,6 @@ yarn dev
 ```bash
 yarn build
 ```
+
 [![CI](https://github.com/kempil87/tatneft-tz-chart-visualizer/actions/workflows/ci.yml/badge.svg)](https://github.com/kempil87/tatneft-tz-chart-visualizer/actions/workflows/ci.yml)
 [![Deploy](https://github.com/kempil87/tatneft-tz-chart-visualizer/actions/workflows/deploy.yml/badge.svg)](https://github.com/kempil87/tatneft-tz-chart-visualizer/actions/workflows/deploy.yml)
