@@ -5,7 +5,6 @@ import { darkTheme, lightTheme } from '@/shared/config/theme';
 import {
   selectIsDark,
   selectSyncFromSystem,
-  selectToggleTheme,
   subscribeSystemTheme,
   useThemeStore,
 } from '@/shared/model/theme-store';
@@ -24,14 +23,4 @@ export const ThemeProvider = ({ children }: Readonly<PropsWithChildren>) => {
       {children}
     </SCThemeProvider>
   );
-};
-
-export const useTheme = () => {
-  const isDarkMode = useThemeStore(selectIsDark);
-  const toggle = useThemeStore(selectToggleTheme);
-
-  return {
-    isDarkMode,
-    toggle,
-  };
 };
