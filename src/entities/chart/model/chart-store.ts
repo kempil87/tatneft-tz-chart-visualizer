@@ -44,20 +44,15 @@ export const selectChartError = (state: ChartState): string | null => state.erro
 
 export const selectFormResetKey = (state: ChartState): number => state.formResetKey;
 
-export const selectAddChartEntry = (state: ChartState): ChartState['addEntry'] =>
-  state.addEntry;
+export const selectAddChartEntry = (state: ChartState): ChartState['addEntry'] => state.addEntry;
 
-export const selectRemoveChartEntry = (
-  state: ChartState,
-): ChartState['removeEntry'] => state.removeEntry;
+export const selectRemoveChartEntry = (state: ChartState): ChartState['removeEntry'] =>
+  state.removeEntry;
 
-export const selectClearChartEntries = (
-  state: ChartState,
-): ChartState['clearEntries'] => state.clearEntries;
+export const selectClearChartEntries = (state: ChartState): ChartState['clearEntries'] =>
+  state.clearEntries;
 
-export const selectSetChartError = (state: ChartState): ChartState['setError'] =>
-  state.setError;
+export const selectSetChartError = (state: ChartState): ChartState['setError'] => state.setError;
 
-export const selectClearChartError = (
-  state: ChartState,
-): ChartState['clearError'] => state.clearError;
+export const selectClearChartError = (state: ChartState): ChartState['clearError'] =>
+  state.clearError;

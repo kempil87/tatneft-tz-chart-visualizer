@@ -60,8 +60,7 @@ const variantStyles = {
 
 export const Root = styled.p<StyledTypographyProps>`
   margin: 0;
-  color: ${({ theme, $color }) =>
-    $color ? theme.colors[$color] : theme.colors.foreground};
+  color: ${({ theme, $color }) => ($color ? theme.colors[$color] : theme.colors.foreground)};
   text-align: ${({ $align }) => $align ?? 'left'};
   ${({ $variant }) => variantStyles[$variant]};
   ${({ $weight }) =>

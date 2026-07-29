@@ -1,14 +1,6 @@
 import type { AppTheme } from '@/shared/config/theme';
 
-export type TypographyVariant =
-  | 'h1'
-  | 'h2'
-  | 'h3'
-  | 'h4'
-  | 'body'
-  | 'bodySm'
-  | 'caption'
-  | 'label';
+export type TypographyVariant = 'h1' | 'h2' | 'h3' | 'h4' | 'body' | 'bodySm' | 'caption' | 'label';
 
 export type TypographyColor = keyof AppTheme['colors'];
 
