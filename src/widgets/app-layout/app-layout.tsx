@@ -4,6 +4,7 @@ import { AppHeader } from '@/widgets/app-header/app-header';
 import { Layout, Outlet } from './app-layout.styles';
 import { ChartArea } from '@/features/chart-area/chart-area';
 import { EntriesListLazy } from '@/features/entries-list/entries-list.lazy';
+import { Suspense } from 'react';
 
 export const AppLayout = () => {
   return (
@@ -15,7 +16,9 @@ export const AppLayout = () => {
 
         <ChartArea />
 
-        <EntriesListLazy />
+        <Suspense>
+          <EntriesListLazy />
+        </Suspense>
       </Outlet>
     </Layout>
   );
