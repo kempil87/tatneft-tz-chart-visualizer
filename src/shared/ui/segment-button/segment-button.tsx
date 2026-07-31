@@ -22,16 +22,17 @@ export function SegmentButton<T extends string>({
   isStretched = false,
   ...rest
 }: SegmentButtonProps<T>) {
-  const activeIndex = Math.max(
-    0,
-    options.findIndex((option) => option.value === value),
-  );
-
   return (
     <Root role="radiogroup" $count={options.length || 1} $isStretched={isStretched} {...rest}>
       {options.map((option) => {
         const isActive = option.value === value;
         const isSegmentDisabled = isDisabled || Boolean(option.isDisabled);
+
+        const handleClick = () => {
+          if (!isSegmentDisabled) {
+            onChange(option.value);
+          }
+        };
 
         return (
           <Segment
@@ -42,11 +43,7 @@ export function SegmentButton<T extends string>({
             tabIndex={isActive ? 0 : -1}
             disabled={isSegmentDisabled}
             $isActive={isActive}
-            onClick={() => {
-              if (!isSegmentDisabled) {
-                onChange(option.value);
-              }
-            }}
+            onClick={handleClick}
           >
             {option.label}
           </Segment>
