@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+
+import { selectBy } from '@/shared/lib/select-by';
+
 import { Typography } from '../typography/typography';
 
 type WrapperProps = {
@@ -33,8 +36,12 @@ export const InputWrapper = styled.div<WrapperProps>`
   pointer-events: ${({ $isDisabled }) => ($isDisabled ? 'none' : 'auto')};
 
   &:focus-within {
-    box-shadow: 0 0 0 3px
-      ${({ $hasError }) => ($hasError ? 'rgb(231 76 60 / 15%)' : 'rgb(52 152 219 / 15%)')};
+    box-shadow: 0 0 0 2px
+      ${({ theme, $hasError }) =>
+        selectBy($hasError, [
+          [true, theme.colors.danger],
+          [false, theme.colors.brand],
+        ])};
   }
 `;
 
