@@ -1,11 +1,16 @@
 import type { ApexOptions } from 'apexcharts';
 import type { DefaultTheme } from 'styled-components';
 
+import type { ChartType } from '@/entities/chart/model/chart-type';
 import type { ChartEntry } from '@/entities/chart/model/types';
 
 const getCategoriesData = (entries: ChartEntry[]) => entries.map((_, index) => `#${index + 1}`);
 
-export const getChartOptions = (entries: ChartEntry[], theme: DefaultTheme): ApexOptions => ({
+export const getChartOptions = (
+  entries: ChartEntry[],
+  theme: DefaultTheme,
+  type: ChartType,
+): ApexOptions => ({
   chart: {
     toolbar: { show: false },
     background: 'transparent',
@@ -16,9 +21,21 @@ export const getChartOptions = (entries: ChartEntry[], theme: DefaultTheme): Ape
   },
   colors: [theme.colors.brand, theme.colors.secondary, theme.colors.danger],
   dataLabels: { enabled: false },
+  markers: {
+    size: type === 'line' ? 4 : 0,
+  },
   stroke: {
     curve: 'smooth',
-    width: 3,
+    width: type === 'line' ? 3 : 0,
+  },
+  plotOptions: {
+    line: {
+      isSlopeChart: false,
+    },
+    bar: {
+      borderRadius: 4,
+      columnWidth: '55%',
+    },
   },
   grid: {
     borderColor: theme.colors.separator,

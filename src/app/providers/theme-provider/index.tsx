@@ -4,7 +4,7 @@ import { ThemeProvider as SCThemeProvider } from 'styled-components';
 import { darkTheme, lightTheme } from '@/shared/config/theme';
 import {
   selectIsDark,
-  selectSyncFromSystem,
+  selectSetMode,
   subscribeSystemTheme,
   useThemeStore,
 } from '@/shared/model/theme-store';
@@ -12,7 +12,7 @@ import { GlobalStyles } from '@/shared/styles/global-styles';
 
 export const ThemeProvider = ({ children }: Readonly<PropsWithChildren>) => {
   const isDarkMode = useThemeStore(selectIsDark);
-  const syncFromSystem = useThemeStore(selectSyncFromSystem);
+  const syncFromSystem = useThemeStore(selectSetMode);
 
   useLayoutEffect(() => subscribeSystemTheme(syncFromSystem), [syncFromSystem]);
 
