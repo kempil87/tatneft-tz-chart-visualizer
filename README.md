@@ -21,5 +21,10 @@ yarn dev
 yarn build
 ```
 
+## Дополнительно:
+
+Возможность восстановить данные после перезагрузки страницы
+Сохранение состояния темы после перезагрузки и слушатель media-queries
+
 [![CI](https://github.com/kempil87/tatneft-tz-chart-visualizer/actions/workflows/ci.yml/badge.svg)](https://github.com/kempil87/tatneft-tz-chart-visualizer/actions/workflows/ci.yml)
 [![Deploy](https://github.com/kempil87/tatneft-tz-chart-visualizer/actions/workflows/deploy.yml/badge.svg)](https://github.com/kempil87/tatneft-tz-chart-visualizer/actions/workflows/deploy.yml)

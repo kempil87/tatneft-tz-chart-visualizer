@@ -44,7 +44,6 @@ export const Surface = ({
   isStretched = true,
   color = 'default',
   as,
-  children,
   ...props
 }: SurfaceProps) => {
   return (
@@ -63,8 +62,6 @@ export const Surface = ({
       $isStretched={isStretched}
       $color={color}
       {...props}
-    >
-      {children}
-    </Root>
+    />
   );
 };

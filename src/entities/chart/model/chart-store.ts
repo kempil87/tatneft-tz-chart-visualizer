@@ -1,8 +1,15 @@
 import { create } from 'zustand';
 
+import { chartDraftApi } from '@/entities/chart/lib/chart-draft';
 import type { ChartEntry, ChartEntryPayload, ChartState } from './types';
 
 const createEntryId = (): string => crypto.randomUUID();
+
+const createEntry = (payload: ChartEntryPayload): ChartEntry => ({
+  ...payload,
+  id: createEntryId(),
+  createdAt: Date.now(),
+});
 
 export const useChartStore = create<ChartState>((set) => ({
   data: [],
@@ -17,8 +24,7 @@ export const useChartStore = create<ChartState>((set) => ({
 
   addEntry: (payload: ChartEntryPayload) =>
     set((state) => {
-      const id = createEntryId();
-      const entry = { ...payload, id, createdAt: Date.now() };
+      const entry = createEntry(payload);
 
       return { data: [...state.data, entry] };
     }),
@@ -34,6 +40,14 @@ export const useChartStore = create<ChartState>((set) => ({
 
   clearError: () => set({ error: null }),
 }));
+
+useChartStore.subscribe((state, previousState) => {
+  if (state.data === previousState.data) {
+    return;
+  }
+
+  chartDraftApi.write(state.data);
+});
 
 export const selectChartEntries = (state: ChartState): ChartEntry[] => state.data;
 

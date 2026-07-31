@@ -33,7 +33,7 @@ export const ChartSlot = styled.div`
   flex-direction: column;
 `;
 
-export const ChartFallback = styled(Typography)`
+export const ChartFallback = styled.div`
   margin: auto;
   display: flex;
   flex-direction: column;

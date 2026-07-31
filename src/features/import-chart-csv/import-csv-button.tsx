@@ -21,18 +21,18 @@ export const ImportCsvButton = ({ onSuccess, onError }: ImportCsvButtonProps) =>
 
   const onChange = async (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
-
     event.target.value = '';
 
-    if (!file) {
+    if (!file || file.size === 0 || file.type !== 'text/csv') {
+      onError(new Error('Некорректный файл CSV'));
       return;
     }
 
     try {
       const content = await file.text();
-      const rows = parseChartCsv(content);
+      const entries = parseChartCsv(content);
 
-      onSuccess(rows);
+      onSuccess(entries);
     } catch (error) {
       onError(error as Error);
     }

@@ -1,5 +1,7 @@
 export type { ChartEntry, ChartEntryPayload, ChartState } from './model/types';
 
+export { chartDraftApi } from './lib/chart-draft';
+
 export { useChartStore } from './model/chart-store';
 export {
   selectAddChartEntries,

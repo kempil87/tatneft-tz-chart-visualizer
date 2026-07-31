@@ -18,6 +18,8 @@ export interface AppTheme {
     md: string;
     lg: string;
     xl: string;
+    xxl: string;
+    xxxl: string;
   };
   borderRadius: {
     full: string;
