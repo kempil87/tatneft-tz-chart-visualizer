@@ -1,4 +1,4 @@
-import { Suspense, useMemo } from 'react';
+import { Suspense } from 'react';
 
 import {
   selectAddChartEntries,
@@ -7,7 +7,14 @@ import {
   type ChartEntry,
 } from '@/entities/chart';
 import { ChartLazy } from '@/entities/chart/ui/chart.lazy';
-import { ChartSlot, EmptyPlaceholder, Header, Root } from '@/features/chart-area/chat-area.styles';
+import {
+  ChartSlot,
+  ChartFallback,
+  EmptyPlaceholder,
+  Header,
+  Root,
+  ChartLoader,
+} from '@/features/chart-area/chat-area.styles';
 import { ImportCsvButton } from '@/features/import-chart-csv';
 import { errorServiceApi } from '@/app/services/error-service';
 import { Typography } from '@/shared/ui/typography';
@@ -16,15 +23,15 @@ export const ChartArea = () => {
   const entries = useChartStore(selectChartEntries);
   const setEntries = useChartStore(selectAddChartEntries);
 
-  const shouldPlaceholderVisible = useMemo(() => entries.length === 0, [entries]);
+  const shouldPlaceholderVisible = entries.length === 0;
 
-  const onSuccess = (rows: ChartEntry[]) => {
+  const onImportSuccess = (rows: ChartEntry[]) => {
     setEntries(rows);
 
     errorServiceApi.clearError();
   };
 
-  const onError = (error: Error) => {
+  const onImportError = (error: Error) => {
     errorServiceApi.handleError(
       error instanceof Error ? error.message : 'Не удалось импортировать CSV',
     );
@@ -37,7 +44,7 @@ export const ChartArea = () => {
           График
         </Typography>
 
-        <ImportCsvButton onSuccess={onSuccess} onError={onError} />
+        <ImportCsvButton onSuccess={onImportSuccess} onError={onImportError} />
       </Header>
 
       {shouldPlaceholderVisible ? (
@@ -46,7 +53,17 @@ export const ChartArea = () => {
         </EmptyPlaceholder>
       ) : (
         <ChartSlot>
-          <Suspense>
+          <Suspense
+            fallback={
+              <ChartFallback>
+                <ChartLoader />
+
+                <Typography variant="bodySm" color="secondary">
+                  Загрузка графика…
+                </Typography>
+              </ChartFallback>
+            }
+          >
             <ChartLazy entries={entries} />
           </Suspense>
         </ChartSlot>

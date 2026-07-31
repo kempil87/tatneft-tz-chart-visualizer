@@ -1,4 +1,4 @@
-import { useRef, type ChangeEvent } from 'react';
+import { useId, useRef, type ChangeEvent } from 'react';
 
 import { parseChartCsv } from '@/features/import-chart-csv/parse-chart-csv';
 
@@ -13,6 +13,7 @@ interface ImportCsvButtonProps {
 
 export const ImportCsvButton = ({ onSuccess, onError }: ImportCsvButtonProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
+  const inputId = useId();
 
   const handleOpen = () => {
     inputRef.current?.click();
@@ -39,9 +40,23 @@ export const ImportCsvButton = ({ onSuccess, onError }: ImportCsvButtonProps) =>
 
   return (
     <>
-      <HiddenInput ref={inputRef} type="file" accept=".csv,text/csv" onChange={onChange} />
+      <HiddenInput
+        ref={inputRef}
+        id={inputId}
+        name="chart-csv"
+        type="file"
+        accept=".csv,text/csv"
+        aria-label="Выбрать CSV-файл для импорта"
+        onChange={onChange}
+      />
 
-      <Button type="button" variant="flat" isStretched={false} onClick={handleOpen}>
+      <Button
+        type="button"
+        variant="flat"
+        isStretched={false}
+        aria-controls={inputId}
+        onClick={handleOpen}
+      >
         Импортировать CSV
       </Button>
     </>

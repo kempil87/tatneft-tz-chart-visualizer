@@ -1,9 +1,11 @@
 import { createGlobalStyle } from 'styled-components';
 
+const fontBaseUrl = `${import.meta.env.BASE_URL}fonts/Onest`;
+
 export const GlobalStyles = createGlobalStyle`
   @font-face {
     font-family: Onest;
-    src: url('/fonts/Onest/Onest-Thin.woff2') format('woff2');
+    src: url('${fontBaseUrl}/Onest-Thin.woff2') format('woff2');
     font-weight: 100;
     font-style: normal;
     font-display: swap;
@@ -11,7 +13,7 @@ export const GlobalStyles = createGlobalStyle`
 
   @font-face {
     font-family: Onest;
-    src: url('/fonts/Onest/Onest-Light.woff2') format('woff2');
+    src: url('${fontBaseUrl}/Onest-Light.woff2') format('woff2');
     font-weight: 300;
     font-style: normal;
     font-display: swap;
@@ -19,7 +21,7 @@ export const GlobalStyles = createGlobalStyle`
 
   @font-face {
     font-family: Onest;
-    src: url('/fonts/Onest/Onest-Regular.woff2') format('woff2');
+    src: url('${fontBaseUrl}/Onest-Regular.woff2') format('woff2');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -27,7 +29,7 @@ export const GlobalStyles = createGlobalStyle`
 
   @font-face {
     font-family: Onest;
-    src: url('/fonts/Onest/Onest-Medium.woff2') format('woff2');
+    src: url('${fontBaseUrl}/Onest-Medium.woff2') format('woff2');
     font-weight: 500;
     font-style: normal;
     font-display: swap;
@@ -35,7 +37,7 @@ export const GlobalStyles = createGlobalStyle`
 
   @font-face {
     font-family: Onest;
-    src: url('/fonts/Onest/Onest-Bold.woff2') format('woff2');
+    src: url('${fontBaseUrl}/Onest-Bold.woff2') format('woff2');
     font-weight: 700;
     font-style: normal;
     font-display: swap;
@@ -43,7 +45,7 @@ export const GlobalStyles = createGlobalStyle`
 
   @font-face {
     font-family: Onest;
-    src: url('/fonts/Onest/Onest-ExtraBold.woff2') format('woff2');
+    src: url('${fontBaseUrl}/Onest-ExtraBold.woff2') format('woff2');
     font-weight: 800;
     font-style: normal;
     font-display: swap;
@@ -51,7 +53,7 @@ export const GlobalStyles = createGlobalStyle`
 
   @font-face {
     font-family: Onest;
-    src: url('/fonts/Onest/Onest-Black.woff2') format('woff2');
+    src: url('${fontBaseUrl}/Onest-Black.woff2') format('woff2');
     font-weight: 900;
     font-style: normal;
     font-display: swap;

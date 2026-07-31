@@ -6,7 +6,7 @@ export const AppThemeSwitcher = () => {
 
   return (
     <Switch isChecked={themeApi.isDarkMode} onChange={themeApi.toggle}>
-      {!themeApi.isDarkMode ? 'Темная тема' : 'Светлая тема'}
+      {(isChecked) => (isChecked ? 'Светлая тема' : 'Темная тема')}
     </Switch>
   );
 };

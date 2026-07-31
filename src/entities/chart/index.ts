@@ -1,6 +1,3 @@
-export { Chart } from './ui/chart';
-export type { ChartProps } from './ui/chart';
-
 export type { ChartEntry, ChartEntryPayload, ChartState } from './model/types';
 
 export { useChartStore } from './model/chart-store';

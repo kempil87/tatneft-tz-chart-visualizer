@@ -1,15 +1,16 @@
-import type { ButtonHTMLAttributes } from 'react';
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
 
 import { Root, Thumb, Track } from '@/shared/ui/switch/switch.styles';
 import { Typography } from '@/shared/ui/typography';
 
 export interface SwitchProps extends Omit<
   ButtonHTMLAttributes<HTMLButtonElement>,
-  'onChange' | 'role' | 'type'
+  'onChange' | 'role' | 'type' | 'children'
 > {
   isChecked: boolean;
   onChange: (checked: boolean) => void;
   isDisabled?: boolean;
+  children?: ReactNode | ((isChecked: boolean) => ReactNode);
 }
 
 export const Switch = ({
@@ -26,7 +27,11 @@ export const Switch = ({
 
   return (
     <Root>
-      {children && <Typography weight="medium">{children}</Typography>}
+      {children && (
+        <Typography weight="medium">
+          {typeof children === 'function' ? children(isChecked) : children}
+        </Typography>
+      )}
 
       <Track
         type="button"

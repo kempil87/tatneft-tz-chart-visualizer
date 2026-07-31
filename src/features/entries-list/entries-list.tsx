@@ -1,5 +1,3 @@
-import { useMemo } from 'react';
-
 import {
   selectChartEntries,
   selectClearChartEntries,
@@ -10,26 +8,15 @@ import { Button } from '@/shared/ui/button';
 import { Surface } from '@/shared/ui/surface';
 import { Typography } from '@/shared/ui/typography';
 
-import { Header, List, Meta, Params } from './entries-list.styles';
-
-const formatDate = (timestamp: number) =>
-  new Intl.DateTimeFormat('ru-RU', {
-    dateStyle: 'short',
-    timeStyle: 'medium',
-  }).format(timestamp);
+import { EntryCard } from './entry-card';
+import { Header, List } from './entries-list.styles';
 
 export const EntriesList = () => {
   const entries = useChartStore(selectChartEntries);
   const removeAll = useChartStore(selectClearChartEntries);
   const removeEntry = useChartStore(selectRemoveChartEntry);
 
-  const shouldListVisible = useMemo(() => entries.length > 0, [entries]);
-
-  const handleRemoveEntry = (id: string) => {
-    removeEntry(id);
-  };
-
-  if (!shouldListVisible) {
+  if (entries.length === 0) {
     return null;
   }
 
@@ -47,37 +34,7 @@ export const EntriesList = () => {
 
       <List>
         {entries.map((entry, index) => (
-          <Surface
-            as="li"
-            color="brand"
-            padding="sm"
-            inlinePadding="md"
-            display="flex"
-            justify="space-between"
-            align="center"
-            gap="xs"
-            key={entry.id}
-          >
-            <Meta>
-              <Typography variant="label" weight="medium">
-                Запись #{index + 1}
-              </Typography>
-
-              <Typography variant="caption" color="secondary">
-                {formatDate(entry.createdAt)}
-              </Typography>
-            </Meta>
-
-            <Params>
-              <Typography variant="bodySm">Parameter 1: {entry.parameter1}</Typography>
-              <Typography variant="bodySm">Parameter 2: {entry.parameter2}</Typography>
-              <Typography variant="bodySm">Parameter 3: {entry.parameter3}</Typography>
-
-              <Button variant="flat" color="danger" onClick={() => handleRemoveEntry(entry.id)}>
-                Удалить
-              </Button>
-            </Params>
-          </Surface>
+          <EntryCard key={entry.id} entry={entry} order={index + 1} onRemove={removeEntry} />
         ))}
       </List>
     </Surface>

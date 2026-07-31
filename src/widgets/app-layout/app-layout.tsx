@@ -1,10 +1,9 @@
 import { ChartForm } from '@/features/chart-form';
+import { ChartArea } from '@/features/chart-area/chart-area';
+import { EntriesList } from '@/features/entries-list/entries-list';
 import { AppHeader } from '@/widgets/app-header/app-header';
 
 import { Layout, Outlet } from './app-layout.styles';
-import { ChartArea } from '@/features/chart-area/chart-area';
-import { EntriesListLazy } from '@/features/entries-list/entries-list.lazy';
-import { Suspense } from 'react';
 
 export const AppLayout = () => {
   return (
@@ -16,9 +15,7 @@ export const AppLayout = () => {
 
         <ChartArea />
 
-        <Suspense>
-          <EntriesListLazy />
-        </Suspense>
+        <EntriesList />
       </Outlet>
     </Layout>
   );
