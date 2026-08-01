@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-import { chartDraftApi } from '@/entities/chart/lib/chart-draft';
+import { chartDraftApi } from '../lib/chart-draft';
 import type { ChartEntry, ChartEntryPayload, ChartState } from './types';
 
 const createEntryId = (): string => crypto.randomUUID();

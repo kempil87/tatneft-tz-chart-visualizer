@@ -6,7 +6,7 @@ export const Layout = styled('main')`
   height: 100%;
 `;
 
-export const Outlet = styled('section')`
+export const Content = styled('section')`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: ${({ theme }) => theme.spacing.md};

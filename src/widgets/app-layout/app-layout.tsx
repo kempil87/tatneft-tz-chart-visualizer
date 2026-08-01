@@ -1,25 +1,19 @@
-import { ChartForm } from '@/features/chart-form';
-import { ChartArea } from '@/features/chart-area/chart-area';
-import { ChartDraftBanner } from '@/features/chart-draft-banner';
-import { EntriesList } from '@/features/entries-list/entries-list';
-import { AppHeader } from '@/widgets/app-header/app-header';
+import type { PropsWithChildren, ReactNode } from 'react';
 
-import { Layout, Outlet } from './app-layout.styles';
+import { Content, Layout } from './app-layout.styles';
 
-export const AppLayout = () => {
+interface AppLayoutProps extends PropsWithChildren {
+  header: ReactNode;
+  banner?: ReactNode;
+}
+
+export const AppLayout = ({ header, banner, children }: AppLayoutProps) => {
   return (
     <Layout>
-      <AppHeader />
+      {header}
+      {banner}
 
-      <ChartDraftBanner />
-
-      <Outlet>
-        <ChartForm />
-
-        <ChartArea />
-
-        <EntriesList />
-      </Outlet>
+      <Content>{children}</Content>
     </Layout>
   );
 };

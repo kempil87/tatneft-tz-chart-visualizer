@@ -1,5 +1,5 @@
+import { ThemeSwitcher } from '@/features/theme-switcher';
 import { Typography } from '@/shared/ui/typography';
-import { AppThemeSwitcher } from '@/widgets/app-theme-switcher/app-theme-switcher';
 
 import { Header } from './app-header.styles';
 
@@ -10,7 +10,7 @@ export const AppHeader = () => {
         Татнефть Dashboard
       </Typography>
 
-      <AppThemeSwitcher />
+      <ThemeSwitcher />
     </Header>
   );
 };

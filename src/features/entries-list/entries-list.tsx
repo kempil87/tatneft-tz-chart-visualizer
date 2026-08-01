@@ -1,4 +1,5 @@
 import {
+  EntryCard,
   selectChartEntries,
   selectClearChartEntries,
   selectRemoveChartEntry,
@@ -8,7 +9,6 @@ import { Button } from '@/shared/ui/button';
 import { Surface } from '@/shared/ui/surface';
 import { Typography } from '@/shared/ui/typography';
 
-import { EntryCard } from './entry-card';
 import { Header, List } from './entries-list.styles';
 
 export const EntriesList = () => {

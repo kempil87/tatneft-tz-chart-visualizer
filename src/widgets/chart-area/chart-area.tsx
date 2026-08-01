@@ -1,12 +1,9 @@
 import { Suspense } from 'react';
 
-import {
-  selectAddChartEntries,
-  selectChartEntries,
-  useChartStore,
-  type ChartEntry,
-} from '@/entities/chart';
-import { ChartLazy } from '@/entities/chart/ui/chart.lazy';
+import { ChartLazy, selectChartEntries, useChartStore } from '@/entities/chart';
+import { ImportCsvButton } from '@/features/import-chart-csv';
+import { Typography } from '@/shared/ui/typography';
+
 import {
   ChartSlot,
   ChartFallback,
@@ -14,28 +11,11 @@ import {
   Header,
   Root,
   ChartLoader,
-} from '@/features/chart-area/chat-area.styles';
-import { ImportCsvButton } from '@/features/import-chart-csv';
-import { errorServiceApi } from '@/app/services/error-service';
-import { Typography } from '@/shared/ui/typography';
+} from './chart-area.styles';
 
 export const ChartArea = () => {
   const entries = useChartStore(selectChartEntries);
-  const setEntries = useChartStore(selectAddChartEntries);
-
   const shouldPlaceholderVisible = entries.length === 0;
-
-  const onImportSuccess = (rows: ChartEntry[]) => {
-    setEntries(rows);
-
-    errorServiceApi.clearError();
-  };
-
-  const onImportError = (error: Error) => {
-    errorServiceApi.handleError(
-      error instanceof Error ? error.message : 'Не удалось импортировать CSV',
-    );
-  };
 
   return (
     <Root type="raised" padding="lg" display="flex" direction="column" gap="md">
@@ -44,7 +24,7 @@ export const ChartArea = () => {
           График
         </Typography>
 
-        <ImportCsvButton onSuccess={onImportSuccess} onError={onImportError} />
+        <ImportCsvButton />
       </Header>
 
       {shouldPlaceholderVisible ? (

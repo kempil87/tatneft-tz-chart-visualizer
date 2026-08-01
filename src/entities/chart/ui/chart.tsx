@@ -2,11 +2,11 @@ import { useMemo, useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import { useTheme } from 'styled-components';
 
-import { getChartOptions } from '@/entities/chart/lib/get-chart-options';
-import { getChartSeries } from '@/entities/chart/lib/get-chart-series';
-import { CHART_TYPE_OPTIONS, CHART_TYPES, type ChartType } from '@/entities/chart/model/chart-type';
-import type { ChartEntry } from '@/entities/chart/model/types';
-import { ChartCanvas, ChartRoot } from '@/entities/chart/ui/chart.styles';
+import { getChartOptions } from '../lib/get-chart-options';
+import { getChartSeries } from '../lib/get-chart-series';
+import { CHART_TYPE_OPTIONS, CHART_TYPES, type ChartType } from '../model/chart-type';
+import type { ChartEntry } from '../model/types';
+import { ChartCanvas, ChartRoot } from './chart.styles';
 import { SegmentButton } from '@/shared/ui/segment-button';
 
 export interface ChartProps {

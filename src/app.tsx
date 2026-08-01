@@ -1,7 +1,7 @@
-import { ThemeProvider } from '@/app/providers/theme-provider';
+import { Dashboard } from '@/app/dashboard';
 import { ErrorServiceProvider } from '@/app/providers/error-service-provider';
+import { ThemeProvider } from '@/app/providers/theme-provider';
 import { ErrorBoundary } from '@/shared/ui/error-boundary';
-import { AppLayout } from '@/widgets/app-layout/app-layout';
 import { Toaster } from 'sonner';
 
 export const App = () => {
@@ -9,7 +9,7 @@ export const App = () => {
     <ThemeProvider>
       <ErrorServiceProvider>
         <ErrorBoundary>
-          <AppLayout />
+          <Dashboard />
 
           <Toaster position="top-right" richColors closeButton />
         </ErrorBoundary>

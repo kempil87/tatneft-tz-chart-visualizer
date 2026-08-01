@@ -1,7 +1,7 @@
 import { useTheme } from '@/shared/model/use-theme';
 import { Switch } from '@/shared/ui/switch';
 
-export const AppThemeSwitcher = () => {
+export const ThemeSwitcher = () => {
   const themeApi = useTheme();
 
   return (

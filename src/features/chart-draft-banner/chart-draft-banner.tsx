@@ -1,10 +1,10 @@
 import { selectChartEntries, useChartStore } from '@/entities/chart';
 import { Button } from '@/shared/ui/button';
+import { Surface } from '@/shared/ui/surface';
 import { Typography } from '@/shared/ui/typography';
 
 import { Actions, Container } from './chart-draft-banner.styles';
-import { useChartDraft } from '@/entities/chart/model/use-chart-draft';
-import { Surface } from '@/shared/ui/surface';
+import { useChartDraft } from './use-chart-draft';
 
 export const ChartDraftBanner = () => {
   const entries = useChartStore(selectChartEntries);

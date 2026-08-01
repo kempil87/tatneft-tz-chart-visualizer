@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { chartDraftApi } from '../lib/chart-draft';
-import { useChartStore } from './chart-store';
-import { selectAddChartEntries } from './chart-store';
+
+import { chartDraftApi, selectAddChartEntries, useChartStore } from '@/entities/chart';
 
 export const useChartDraft = () => {
   const restoreEntries = useChartStore(selectAddChartEntries);

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { selectBy } from '@/shared/lib/select-by';
 
-import { Typography } from '../typography/typography';
+import { Typography } from '@/shared/ui/typography';
 
 type WrapperProps = {
   $hasError: boolean;

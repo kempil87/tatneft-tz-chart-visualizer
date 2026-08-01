@@ -1,9 +1,9 @@
-import type { ChartEntry } from '@/entities/chart';
 import { formatDate } from '@/shared/lib/format-date';
 import { Button } from '@/shared/ui/button';
 import { Surface } from '@/shared/ui/surface';
 import { Typography } from '@/shared/ui/typography';
 
+import type { ChartEntry } from '../model/types';
 import { Meta, Params } from './entry-card.styles';
 
 interface EntryCardProps {

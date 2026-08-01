@@ -1,8 +1,8 @@
 import type { ApexOptions } from 'apexcharts';
 import type { DefaultTheme } from 'styled-components';
 
-import type { ChartType } from '@/entities/chart/model/chart-type';
-import type { ChartEntry } from '@/entities/chart/model/types';
+import type { ChartType } from '../model/chart-type';
+import type { ChartEntry } from '../model/types';
 
 const getCategoriesData = (entries: ChartEntry[]) => entries.map((_, index) => `#${index + 1}`);
 

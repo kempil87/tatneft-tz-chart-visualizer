@@ -1,5 +1,5 @@
 import { STORAGE_KEYS } from '@/shared/config/storage';
-import type { ChartEntry } from '@/entities/chart/model/types';
+import type { ChartEntry } from '../model/types';
 
 const isChartEntry = (value: unknown): value is ChartEntry => {
   if (!value || typeof value !== 'object') {
@@ -17,7 +17,7 @@ const isChartEntry = (value: unknown): value is ChartEntry => {
   );
 };
 
-class ChartDraft {
+export const chartDraftApi = {
   read(): ChartEntry[] {
     if (typeof window === 'undefined') {
       return [];
@@ -42,26 +42,26 @@ class ChartDraft {
       localStorage.removeItem(STORAGE_KEYS.CHART_DATA_DRAFT);
       return [];
     }
-  }
+  },
+
   write(entries: ChartEntry[]): void {
     if (typeof window === 'undefined') {
       return;
     }
 
     if (entries.length === 0) {
-      this.clear();
+      chartDraftApi.clear();
       return;
     }
 
     localStorage.setItem(STORAGE_KEYS.CHART_DATA_DRAFT, JSON.stringify(entries));
-  }
+  },
+
   clear(): void {
     if (typeof window === 'undefined') {
       return;
     }
 
     localStorage.removeItem(STORAGE_KEYS.CHART_DATA_DRAFT);
-  }
-}
-
-export const chartDraftApi = new ChartDraft();
+  },
+};

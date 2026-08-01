@@ -13,7 +13,6 @@ export const errorServiceApi: ErrorService = {
   },
   clearError: () => {
     useChartStore.getState().clearError();
-    toast.dismiss();
   },
 };
 
@@ -31,6 +30,10 @@ export const initErrorService = (): (() => void) => {
 
     if (nextError && nextError !== previousError) {
       toast.error(nextError);
+    }
+
+    if (!nextError && previousError) {
+      toast.dismiss();
     }
 
     previousError = nextError;

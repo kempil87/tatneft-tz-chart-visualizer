@@ -1,19 +1,22 @@
-import { useId, useRef, type ChangeEvent } from 'react';
+import { useRef, type ChangeEvent } from 'react';
 
-import { parseChartCsv } from '@/features/import-chart-csv/parse-chart-csv';
-
+import {
+  selectAddChartEntries,
+  selectClearChartError,
+  selectSetChartError,
+  useChartStore,
+} from '@/entities/chart';
 import { Button } from '@/shared/ui/button';
+
 import { HiddenInput } from './import-csv-button.styles';
-import type { ChartEntry } from '@/entities/chart';
+import { parseChartCsv } from './parse-chart-csv';
 
-interface ImportCsvButtonProps {
-  onSuccess: (entries: ChartEntry[]) => void;
-  onError: (error: Error) => void;
-}
-
-export const ImportCsvButton = ({ onSuccess, onError }: ImportCsvButtonProps) => {
+export const ImportCsvButton = () => {
   const inputRef = useRef<HTMLInputElement>(null);
-  const inputId = useId();
+
+  const addEntries = useChartStore(selectAddChartEntries);
+  const setError = useChartStore(selectSetChartError);
+  const clearError = useChartStore(selectClearChartError);
 
   const handleOpen = () => {
     inputRef.current?.click();
@@ -24,7 +27,7 @@ export const ImportCsvButton = ({ onSuccess, onError }: ImportCsvButtonProps) =>
     event.target.value = '';
 
     if (!file || file.size === 0 || file.type !== 'text/csv') {
-      onError(new Error('Некорректный файл CSV'));
+      setError('Некорректный файл CSV');
       return;
     }
 
@@ -32,9 +35,10 @@ export const ImportCsvButton = ({ onSuccess, onError }: ImportCsvButtonProps) =>
       const content = await file.text();
       const entries = parseChartCsv(content);
 
-      onSuccess(entries);
+      addEntries(entries);
+      clearError();
     } catch (error) {
-      onError(error as Error);
+      setError(error instanceof Error ? error.message : 'Не удалось импортировать CSV');
     }
   };
 
@@ -42,7 +46,6 @@ export const ImportCsvButton = ({ onSuccess, onError }: ImportCsvButtonProps) =>
     <>
       <HiddenInput
         ref={inputRef}
-        id={inputId}
         name="chart-csv"
         type="file"
         accept=".csv,text/csv"
@@ -50,13 +53,7 @@ export const ImportCsvButton = ({ onSuccess, onError }: ImportCsvButtonProps) =>
         onChange={onChange}
       />
 
-      <Button
-        type="button"
-        variant="flat"
-        isStretched={false}
-        aria-controls={inputId}
-        onClick={handleOpen}
-      >
+      <Button type="button" variant="flat" isStretched={false} onClick={handleOpen}>
         Импортировать CSV
       </Button>
     </>

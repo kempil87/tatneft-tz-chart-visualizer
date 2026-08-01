@@ -1,4 +1,4 @@
-import { selectIsDark, selectToggleTheme, useThemeStore } from '@/shared/model/theme-store';
+import { selectIsDark, selectToggleTheme, useThemeStore } from './theme-store';
 
 export const useTheme = () => {
   const isDarkMode = useThemeStore(selectIsDark);

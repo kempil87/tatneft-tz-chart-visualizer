@@ -9,7 +9,7 @@ import {
   type ChartEntryPayload,
 } from '@/entities/chart';
 import { Button } from '@/shared/ui/button';
-import { Input } from '@/shared/ui/input';
+import { FormInput } from '@/shared/ui/input';
 import { Typography } from '@/shared/ui/typography';
 
 import { chartFormSchema, type ChartFormInput } from './chart-form.schema';
@@ -63,21 +63,21 @@ export const ChartForm = () => {
         </Header>
 
         <Form noValidate onSubmit={formApi.handleSubmit(onSubmit)}>
-          <Input
+          <FormInput
             name="parameter1"
             label="Параметр 1"
             type="number"
             placeholder="Введите значение"
           />
 
-          <Input
+          <FormInput
             name="parameter2"
             label="Параметр 2"
             type="number"
             placeholder="Введите значение"
           />
 
-          <Input
+          <FormInput
             name="parameter3"
             label="Параметр 3"
             type="number"

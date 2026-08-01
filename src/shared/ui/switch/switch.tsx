@@ -1,6 +1,6 @@
 import type { ButtonHTMLAttributes, ReactNode } from 'react';
 
-import { Root, Thumb, Track } from '@/shared/ui/switch/switch.styles';
+import { Root, Thumb, Track } from './switch.styles';
 import { Typography } from '@/shared/ui/typography';
 
 export interface SwitchProps extends Omit<

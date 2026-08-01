@@ -1,4 +1,4 @@
-import type { ChartEntry } from '@/entities/chart/model/types';
+import type { ChartEntry } from '../model/types';
 
 export const getChartSeries = (entries: ChartEntry[]) => [
   {
