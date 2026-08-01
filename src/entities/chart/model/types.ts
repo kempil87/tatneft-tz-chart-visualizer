@@ -13,7 +13,8 @@ export interface ChartState {
   error: string | null;
   formResetKey: number;
   addEntry: (payload: ChartEntryPayload) => void;
-  addEntries: (payload: ChartEntry[]) => void;
+  addEntries: (payloads: ChartEntryPayload[]) => void;
+  setEntries: (entries: ChartEntry[]) => void;
   removeEntry: (id: string) => void;
   clearEntries: () => void;
   setError: (message: string) => void;

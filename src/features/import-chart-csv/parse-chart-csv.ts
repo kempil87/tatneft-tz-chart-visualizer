@@ -1,7 +1,8 @@
 import { z } from 'zod';
 
 import { parseCsv } from '@/shared/lib/csv';
-import type { ChartEntry } from '@/entities/chart';
+
+import type { ParsedCSVRow } from './types';
 
 const REQUIRED_HEADERS = ['parameter1', 'parameter2', 'parameter3'] as const;
 
@@ -18,11 +19,11 @@ const parsedCsvRowSchema = z.object({
     .number({ error: 'parameter3 должен быть числом' })
     .min(0, 'parameter3 должен быть не меньше 0')
     .max(1000, 'parameter3 должен быть не больше 1000'),
-});
+}) satisfies z.ZodType<ParsedCSVRow>;
 
 const normalizeHeader = (header: string) => header.trim().toLowerCase();
 
-export const parseChartCsv = (content: string): ChartEntry[] => {
+export const parseChartCsv = (content: string): ParsedCSVRow[] => {
   const table = parseCsv(content);
 
   if (table.length < 2) {
@@ -52,29 +53,19 @@ export const parseChartCsv = (content: string): ChartEntry[] => {
     parameter3: normalizedHeaders.indexOf('parameter3'),
   };
 
-  const createEntryId = (row: string[], index: number) =>
-    crypto.randomUUID() +
-    index.toString() +
-    row[columnIndex.parameter1].toString() +
-    row[columnIndex.parameter2].toString() +
-    row[columnIndex.parameter3].toString();
-
-  return rows.map((row, index) => {
-    const payload = {
+  return rows.map((row) => {
+    const candidate = {
       parameter1: Number(row[columnIndex.parameter1]),
       parameter2: Number(row[columnIndex.parameter2]),
       parameter3: Number(row[columnIndex.parameter3]),
-    } as ChartEntry;
+    };
 
-    const parsed = parsedCsvRowSchema.safeParse(payload);
+    const parsed = parsedCsvRowSchema.safeParse(candidate);
 
     if (!parsed.success) {
-      throw new Error(`Неккоректный CSV файл`);
+      throw new Error('Некорректный CSV файл');
     }
 
-    payload.id = createEntryId(row, index);
-    payload.createdAt = Date.now();
-
-    return payload;
-  }) as ChartEntry[];
+    return parsed.data;
+  });
 };

@@ -16,9 +16,15 @@ export const useChartStore = create<ChartState>((set) => ({
   error: null,
   formResetKey: 0,
 
-  addEntries: (payload) =>
+  addEntries: (payloads) =>
     set((state) => ({
-      data: payload,
+      data: payloads.map(createEntry),
+      formResetKey: state.formResetKey + 1,
+    })),
+
+  setEntries: (entries) =>
+    set((state) => ({
+      data: entries,
       formResetKey: state.formResetKey + 1,
     })),
 
@@ -53,6 +59,9 @@ export const selectChartEntries = (state: ChartState): ChartEntry[] => state.dat
 
 export const selectAddChartEntries = (state: ChartState): ChartState['addEntries'] =>
   state.addEntries;
+
+export const selectSetChartEntries = (state: ChartState): ChartState['setEntries'] =>
+  state.setEntries;
 
 export const selectChartError = (state: ChartState): string | null => state.error;
 

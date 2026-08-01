@@ -14,5 +14,6 @@ export {
   selectClearChartError,
   selectFormResetKey,
   selectRemoveChartEntry,
+  selectSetChartEntries,
   selectSetChartError,
 } from './model/chart-store';

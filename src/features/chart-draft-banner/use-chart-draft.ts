@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-import { chartDraftApi, selectAddChartEntries, useChartStore } from '@/entities/chart';
+import { chartDraftApi, selectSetChartEntries, useChartStore } from '@/entities/chart';
 
 export const useChartDraft = () => {
-  const restoreEntries = useChartStore(selectAddChartEntries);
+  const setEntries = useChartStore(selectSetChartEntries);
 
   const [isVisible, setIsVisible] = useState(() => Boolean(chartDraftApi.read()?.length));
 
@@ -14,7 +14,7 @@ export const useChartDraft = () => {
       return;
     }
 
-    restoreEntries(draft);
+    setEntries(draft);
     setIsVisible(false);
   };
 
