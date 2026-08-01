@@ -1,11 +1,7 @@
 import { useRef, type ChangeEvent } from 'react';
 
-import {
-  selectAddChartEntries,
-  selectClearChartError,
-  selectSetChartError,
-  useChartStore,
-} from '@/entities/chart';
+import { selectAddChartEntries, useChartStore } from '@/entities/chart';
+import { errorServiceApi } from '@/shared/lib/error-service';
 import { Button } from '@/shared/ui/button';
 
 import { HiddenInput } from './import-csv-button.styles';
@@ -13,10 +9,7 @@ import { parseChartCsv } from './parse-chart-csv';
 
 export const ImportCsvButton = () => {
   const inputRef = useRef<HTMLInputElement>(null);
-
   const addEntries = useChartStore(selectAddChartEntries);
-  const setError = useChartStore(selectSetChartError);
-  const clearError = useChartStore(selectClearChartError);
 
   const handleOpen = () => {
     inputRef.current?.click();
@@ -27,7 +20,7 @@ export const ImportCsvButton = () => {
     event.target.value = '';
 
     if (!file || file.size === 0 || file.type !== 'text/csv') {
-      setError('Некорректный файл CSV');
+      errorServiceApi.handleError('Некорректный файл CSV');
       return;
     }
 
@@ -36,9 +29,11 @@ export const ImportCsvButton = () => {
       const entries = parseChartCsv(content);
 
       addEntries(entries);
-      clearError();
+      errorServiceApi.clearError();
     } catch (error) {
-      setError(error instanceof Error ? error.message : 'Не удалось импортировать CSV');
+      errorServiceApi.handleError(
+        error instanceof Error ? error.message : 'Не удалось импортировать CSV',
+      );
     }
   };
 

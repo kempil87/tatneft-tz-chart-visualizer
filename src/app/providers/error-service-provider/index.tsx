@@ -1,6 +1,9 @@
 import { type PropsWithChildren, useEffect } from 'react';
 
-import { initErrorService } from '@/app/services/error-service';
+import { setupErrorService } from '@/app/services/setup-error-service';
+import { initErrorService } from '@/shared/lib/error-service';
+
+setupErrorService();
 
 export const ErrorServiceProvider = ({ children }: Readonly<PropsWithChildren>) => {
   useEffect(() => {
